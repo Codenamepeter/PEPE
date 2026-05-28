@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>ITPE Study Hub · Offline Small</title>
+<title>ITPE Study Hub · Single File Small Fixed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -56,7 +56,7 @@ textarea{width:100%;min-height:120px;background:#081127;border:1px solid var(--l
 <div class="mobileTop"><div class="logo">IT</div><b>ITPE Study Hub</b><span id="mobileLoadBadge" class="pill">loading</span></div>
 <div class="app">
   <aside class="sidebar">
-    <div class="brand"><div class="logo">IT</div><div><h1>ITPE Study Hub</h1><p>JSON DB · Final Candidate</p></div></div>
+    <div class="brand"><div class="logo">IT</div><div><h1>ITPE Study Hub</h1><p>Single HTML · Embedded DB</p></div></div>
     <nav class="nav" id="nav"></nav>
     <div class="domainBox">
       <label>도메인 필터</label>
@@ -664,29 +664,35 @@ function recommendedTopics(n=20){let p=progress(), now=Date.now();return filtere
 async function loadAll(){
   const loaded={}, missing=[];
   let bundle = {};
-  const fileMode = location.protocol === 'file:';
-  if (fileMode && window.loadEmbeddedBundle) {
-    try { bundle = await window.loadEmbeddedBundle(); }
-    catch(e) { console.error('embedded bundle load failed', e); bundle = {}; }
+  // Single-file/offline-first loader. Always try the embedded compressed bundle first.
+  // This is required on GitHub Pages too, because there is no ./data folder beside this single file.
+  if (window.loadEmbeddedBundle) {
+    try {
+      bundle = await window.loadEmbeddedBundle();
+      window.ITPE_DATA_BUNDLE = bundle;
+    } catch(e) {
+      console.error('embedded bundle load failed', e);
+      bundle = {};
+    }
   } else {
     bundle = window.ITPE_DATA_BUNDLE || {};
   }
-  const bundleKeys = Object.keys(bundle);
+  const bundleHasData = bundle && Object.keys(bundle).length > 0;
   for(const f of DATA_FILES){
     const key=f.replace('.json','');
-    if(fileMode && bundle[key]){ loaded[key]=bundle[key]; continue; }
+    if(bundleHasData && bundle[key]){
+      loaded[key]=bundle[key];
+      continue;
+    }
+    // Fallback only for the folder-based version where ./data/*.json exists.
     try{
       let r=await fetch('./data/'+f);
       if(!r.ok) throw new Error(r.status);
       loaded[key]=await r.json();
     }catch(e){
-      if(bundle[key]){
-        loaded[key]=bundle[key];
-        console.info('loaded from embedded fallback bundle', f);
-      }else{
-        console.warn('load failed',f,e);
-        loaded[key]=null; missing.push(f);
-      }
+      console.warn('load failed',f,e);
+      loaded[key]=null;
+      missing.push(f);
     }
   }
   DB=loaded; topics=(DB.master_topics?.topics||[]); topicMap=new Map(topics.map(t=>[t.topic_id,t])); relations=(DB.relations?.relations||[]); domains=(DB.domain_map?.domains||[]); pairs=(DB.compare_pairs?.pairs||[]);
