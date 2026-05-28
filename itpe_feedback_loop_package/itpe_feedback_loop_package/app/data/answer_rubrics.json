@@ -1,0 +1,214 @@
+{
+  "metadata": {
+    "title": "ITPE Answer Rubrics",
+    "version": "2.2-phase2d",
+    "generated_at": "2026-05-27T14:49:03",
+    "purpose": "기술사 답안형 훈련용 루브릭. 콘텐츠 원문은 master_topics.json에 유지한다.",
+    "preservation_policy": "No topic deletion, no source_records mutation, no automatic merge."
+  },
+  "rubrics": [
+    {
+      "id": "itpe_standard_100",
+      "name": "기술사 표준 100점 루브릭",
+      "description": "정의-구조-키워드-논리-비교/시사점까지 확인하는 기본 채점 기준",
+      "dimensions": [
+        {
+          "id": "definition",
+          "label": "정의 정확성",
+          "weight": 15,
+          "checks": [
+            "1문장 정의 작성",
+            "토픽명 또는 핵심 개념 포함",
+            "과도한 장문 지양"
+          ]
+        },
+        {
+          "id": "structure",
+          "label": "답안 구조",
+          "weight": 18,
+          "checks": [
+            "정의/필요성/구성요소/활용/시사점 중 4개 이상 포함",
+            "번호형 목차 구성",
+            "논리적 전개"
+          ]
+        },
+        {
+          "id": "keyword",
+          "label": "핵심 키워드 커버리지",
+          "weight": 25,
+          "checks": [
+            "master_topics 키워드 포함",
+            "상세 항목의 주요 키 포함",
+            "두음 기반 요소 반영"
+          ]
+        },
+        {
+          "id": "technical",
+          "label": "기술 요소 구체성",
+          "weight": 15,
+          "checks": [
+            "구성요소 또는 절차 3개 이상",
+            "기술 메커니즘 설명",
+            "품질/성능/보안 관점 포함"
+          ]
+        },
+        {
+          "id": "comparison",
+          "label": "비교·평가 관점",
+          "weight": 10,
+          "checks": [
+            "유사 개념과 차별점",
+            "장단점 또는 적용 조건",
+            "선택 기준 제시"
+          ]
+        },
+        {
+          "id": "case",
+          "label": "활용·사례·시사점",
+          "weight": 10,
+          "checks": [
+            "실무 활용 예시",
+            "기대효과 또는 리스크",
+            "최신 동향/법제도 연결"
+          ]
+        },
+        {
+          "id": "clarity",
+          "label": "표현 명확성",
+          "weight": 7,
+          "checks": [
+            "짧은 문장",
+            "표/목록화 가능",
+            "키워드 누락 최소화"
+          ]
+        }
+      ],
+      "grade_bands": [
+        {
+          "min": 85,
+          "label": "상",
+          "message": "답안화 가능 수준. 실제 시험에서는 도식/표현만 보강하면 좋습니다."
+        },
+        {
+          "min": 70,
+          "label": "중상",
+          "message": "핵심은 잡혔습니다. 비교·시사점 또는 구성요소를 보강하세요."
+        },
+        {
+          "min": 55,
+          "label": "중",
+          "message": "정의와 키워드는 일부 포함되었으나 답안 구조가 약합니다."
+        },
+        {
+          "min": 0,
+          "label": "하",
+          "message": "핵심 키워드와 목차 구조부터 다시 잡는 편이 좋습니다."
+        }
+      ]
+    },
+    {
+      "id": "definition_fast_30",
+      "name": "30초 정의 루브릭",
+      "description": "짧은 정의와 핵심어 회상에 초점을 둔 빠른 채점",
+      "dimensions": [
+        {
+          "id": "definition",
+          "label": "정의 문장",
+          "weight": 35,
+          "checks": [
+            "1문장 정의",
+            "핵심 개념 포함"
+          ]
+        },
+        {
+          "id": "keyword",
+          "label": "핵심 키워드",
+          "weight": 45,
+          "checks": [
+            "키워드 3개 이상",
+            "토픽명/별칭 포함"
+          ]
+        },
+        {
+          "id": "clarity",
+          "label": "간결성",
+          "weight": 20,
+          "checks": [
+            "불필요한 수식어 최소화",
+            "답안 첫 문장으로 사용 가능"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "essay_deep_120",
+      "name": "심화 답안 루브릭",
+      "description": "2~3페이지 답안 확장을 위한 심화 체크",
+      "dimensions": [
+        {
+          "id": "definition",
+          "label": "정의·범위",
+          "weight": 12,
+          "checks": [
+            "개념 경계",
+            "관련 표준/기술명"
+          ]
+        },
+        {
+          "id": "structure",
+          "label": "논리 구조",
+          "weight": 18,
+          "checks": [
+            "배경-문제-해법-효과",
+            "목차 균형"
+          ]
+        },
+        {
+          "id": "keyword",
+          "label": "키워드 밀도",
+          "weight": 22,
+          "checks": [
+            "핵심 키워드 60% 이상",
+            "세부 항목 연결"
+          ]
+        },
+        {
+          "id": "technical",
+          "label": "기술 상세",
+          "weight": 20,
+          "checks": [
+            "아키텍처/절차/구성요소",
+            "성능·보안·운영 관점"
+          ]
+        },
+        {
+          "id": "comparison",
+          "label": "비교·대안",
+          "weight": 13,
+          "checks": [
+            "대안 비교",
+            "선택 기준"
+          ]
+        },
+        {
+          "id": "case",
+          "label": "사례·동향",
+          "weight": 10,
+          "checks": [
+            "활용 사례",
+            "최신 이슈"
+          ]
+        },
+        {
+          "id": "clarity",
+          "label": "표현·도식화",
+          "weight": 5,
+          "checks": [
+            "표/그림화 가능",
+            "문장 간결성"
+          ]
+        }
+      ]
+    }
+  ]
+}

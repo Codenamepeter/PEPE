@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-27T14:52:36.408395",
+    "policy": "검토 큐만 제공. 자동 병합/삭제 없음."
+  },
+  "queues": [
+    {
+      "id": "similar_review",
+      "label": "유사 토픽 검토",
+      "source": "merge_report.similar_candidates",
+      "action": "수동 병합 여부만 검토"
+    },
+    {
+      "id": "cross_domain_same_title",
+      "label": "다른 도메인 동일명",
+      "source": "merge_report.cross_domain_same_title_groups",
+      "action": "도메인별 별도 유지 원칙 확인"
+    },
+    {
+      "id": "compare_pair_review",
+      "label": "비교쌍 검토",
+      "source": "compare_pairs",
+      "action": "학습쌍으로 적절한지 검토"
+    },
+    {
+      "id": "answer_prompt_review",
+      "label": "답안형 추천 검토",
+      "source": "answer_prompt_bank",
+      "action": "실전 출제 적합성 검토"
+    }
+  ],
+  "status_values": [
+    "keep_separate",
+    "merge_candidate",
+    "needs_detail",
+    "good_compare",
+    "exclude_from_drill"
+  ]
+}
